@@ -1,0 +1,15 @@
+budget = int(input())
+
+count = 0
+
+while budget >= count:
+    price = input()
+    if price == 'End':
+        print(f'You bought everything needed.')
+        break
+    price = int(price)
+    count += price
+
+if budget < count:
+    print(f'You went in overdraft!')
+
