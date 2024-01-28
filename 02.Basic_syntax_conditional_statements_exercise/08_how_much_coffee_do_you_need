@@ -1,0 +1,21 @@
+list = ['coding', 'movie', 'cat', 'dog', 'CODING', 'CAT', 'DOG', 'MOVIE', 'END']
+
+word = input()
+
+counter = 0
+
+while word != 'END':
+    if word in list:
+        if word.islower():
+            counter += 1
+        if word.isupper():
+            counter += 2
+    else:
+        word = input()
+        continue
+
+    word = input()
+if counter <= 5:
+    print(counter)
+else:
+    print('You need extra sleep')
