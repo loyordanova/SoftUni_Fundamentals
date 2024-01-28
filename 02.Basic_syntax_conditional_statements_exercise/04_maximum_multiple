@@ -1,0 +1,10 @@
+start = int(input())
+finish = int(input())
+
+largest = 0
+
+for i in range(start, finish + 1):
+    if i % start == 0:
+        largest = i
+
+print(largest)
