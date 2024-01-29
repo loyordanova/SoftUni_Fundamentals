@@ -1,0 +1,17 @@
+word1 = 'water'
+word2 = 'fish'
+word3 = 'sand'
+word4 = 'sun'
+
+count = 0
+
+word = input()
+
+word_list = word.casefold()
+
+count += word_list.count(word1)
+count += word_list.count(word2)
+count += word_list.count(word3)
+count += word_list.count(word4)
+
+print(count)
