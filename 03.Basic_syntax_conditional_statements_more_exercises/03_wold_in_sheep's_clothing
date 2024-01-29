@@ -1,0 +1,18 @@
+animals = input()
+
+animals_list = animals.split(', ')
+animals_list.reverse()
+
+count = 0
+
+for i in animals_list:
+    if 'wolf' in animals_list[0]:
+        print(f'Please go away and stop eating my sheep')
+        break
+    else:
+        count += 1
+        if i == 'wolf':
+            count -= 1
+            print(f'Oi! Sheep number {count}! You are about to be eaten by a wolf!')
+            break
+
