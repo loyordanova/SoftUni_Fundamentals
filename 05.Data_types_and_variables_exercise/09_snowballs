@@ -1,0 +1,22 @@
+number_of_snowballs = int(input())
+
+highest_value = 0
+w = 0
+t = 0
+q = 0
+
+for i in range(1, number_of_snowballs + 1):
+    weight = int(input())
+    time = int(input())
+    quality = int(input())
+
+    value = (weight / time) ** quality
+
+    if value > highest_value:
+        highest_value = value
+        w = weight
+        t = time
+        q = quality
+
+print(f'{w} : {t} = {round(highest_value)} ({q})')
+
