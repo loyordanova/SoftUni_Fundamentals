@@ -1,0 +1,13 @@
+capacity = 255
+
+n = int(input())
+poured_liters = 0
+
+for i in range(0, n):
+    liters_of_water = int(input())
+    poured_liters += liters_of_water
+    if poured_liters > capacity:
+        print(f'Insufficient capacity!')
+        poured_liters -= liters_of_water
+
+print(poured_liters)
