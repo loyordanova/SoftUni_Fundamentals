@@ -1,0 +1,10 @@
+n = int(input())
+
+for a in range(0, n):
+    letter = chr(97 + a)
+    for b in range(0, n):
+        letter2 = chr(97 + b)
+        for c in range(0, n):
+            letter3 = chr(97 + c)
+            print(f'{letter}{letter2}{letter3}')
+            
