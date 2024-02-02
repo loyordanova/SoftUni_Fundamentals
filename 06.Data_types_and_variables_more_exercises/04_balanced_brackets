@@ -1,0 +1,26 @@
+n = int(input())
+
+balanced = 0
+
+for i in range(1, n + 1):
+    symbol = input()
+
+    if symbol == '(':
+        balanced += 1
+        if balanced > 1:
+            break
+
+    elif symbol == ')':
+        balanced -= 1
+        if balanced < 0:
+            break
+
+
+if balanced == 0:
+    print(F'BALANCED')
+else:
+    print(f'UNBALANCED')
+
+
+
+
