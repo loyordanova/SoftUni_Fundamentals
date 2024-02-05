@@ -1,0 +1,19 @@
+num_list = input().split(', ')
+beggars = int(input())
+
+index_counter = 0
+int_list = []
+final_list = []
+
+for element in num_list:
+    element_as_int = (int(element))
+    int_list.append(element_as_int)
+
+while index_counter < beggars:
+    result = 0
+    for i in range(index_counter, len(num_list), beggars):
+        result += int_list[i]
+    final_list.append(result)
+    index_counter += 1
+
+print(final_list)
