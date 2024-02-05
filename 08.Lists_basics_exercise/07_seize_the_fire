@@ -1,0 +1,52 @@
+fire = input().split('#')
+water = int(input())
+
+effort = 0
+total_fire = 0
+
+r = []
+
+
+type_of_fire = []
+range_of_fire = []
+
+for el in range(len(fire)):
+    new_list = (fire[el].split())
+    type_of_fire.append(new_list[0])
+    range_of_fire.append(float(new_list[2]))
+
+    if type_of_fire[0] == 'High' and 81 <= range_of_fire[0] <= 125:
+
+        if water >= range_of_fire[0]:
+            water -= range_of_fire[0]
+            r.append(int(new_list[2]))
+            effort += range_of_fire[0] * 0.25
+            total_fire += range_of_fire[0]
+
+    if type_of_fire[0] == 'Medium' and 51 <= range_of_fire[0] <= 80:
+
+        if water >= range_of_fire[0]:
+            water -= range_of_fire[0]
+            r.append(int(new_list[2]))
+            effort += range_of_fire[0] * 0.25
+            total_fire += range_of_fire[0]
+
+    if type_of_fire[0] == 'Low' and 1 <= range_of_fire[0] <= 50:
+
+        if water >= range_of_fire[0]:
+            water -= range_of_fire[0]
+            r.append(int(new_list[2]))
+            effort += range_of_fire[0] * 0.25
+            total_fire += range_of_fire[0]
+
+    type_of_fire.clear()
+    range_of_fire.clear()
+
+print('Cells:')
+x = 0
+for i in range(len(r)):
+    print(f' - {r[x]}')
+    x += 1
+
+print(f'Effort: {effort:.2f}')
+print(f'Total Fire: {int(total_fire)}')
