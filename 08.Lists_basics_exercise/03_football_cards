@@ -1,0 +1,23 @@
+cards = input().split(' ')
+cards = set(cards)
+count_a = 11
+count_b = 11
+
+for i in cards:
+
+    if count_a < 7:
+        break
+    if count_b < 7:
+        break
+
+    if 'A' in i:
+        count_a -= 1
+
+    if 'B' in i:
+        count_b -= 1
+
+if count_a >= 7 and count_b >= 7:
+    print(f'Team A - {count_a}; Team B - {count_b}')
+else:
+    print(f'Team A - {count_a}; Team B - {count_b}')
+    print(f'Game was terminated')
