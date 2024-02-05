@@ -1,0 +1,31 @@
+import math
+
+items = input().split('|')
+budget = float(input())
+
+after_budget = 0
+profit = 0
+price_list = []
+for it in range(len(items)):
+
+    single_item = items[it].split('->')
+    item = (single_item[0])
+    price = float(single_item[1])
+
+    if item == 'Clothes' and price <= 50 or item == 'Shoes' and price <= 35 or item == 'Accessories' and price <= 20.50:
+        if budget >= price:
+            budget -= price
+            sell_price = price + (price * 0.40)
+            price_list.append(sell_price)
+            profit += price * 0.40
+            after_budget += sell_price
+
+for x in price_list:
+    print(f'{x:.2f}', end=" ")
+print('')
+print(f'Profit: {profit:.2f}')
+
+if after_budget + budget >= 150:
+    print(f'Hello, France!')
+else:
+    print(f'Not enough money.')
