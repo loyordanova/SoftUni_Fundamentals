@@ -1,0 +1,17 @@
+str = input().split(' ')
+count = int(input())
+
+half_num = int(len(str) / 2)
+
+for y in range(0, count):
+    final = []
+    for i in range(0, half_num):
+        final.append(str[i])
+        final.append(str[half_num])
+
+        half_num += 1
+
+    str = final
+    half_num = int(len(str) / 2)
+
+print(str)
