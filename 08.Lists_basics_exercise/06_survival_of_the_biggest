@@ -1,0 +1,12 @@
+integers = input().split(' ')
+num = int(input())
+
+integers_as_int = list(map(int, integers))
+
+for i in range(0, num):
+
+    integers_as_int.remove(min(integers_as_int))
+
+as_str = ', '.join([str(i) for i in integers_as_int])
+
+print(as_str)
