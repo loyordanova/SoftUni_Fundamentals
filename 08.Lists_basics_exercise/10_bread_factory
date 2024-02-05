@@ -1,0 +1,42 @@
+event = input().split("|")
+
+initial_energy = 100
+initial_coins = 100
+
+flag = True
+
+for i in range(len(event)):
+    split = event[i].split('-')
+
+    if split[0] == 'rest':
+        if initial_energy + int(split[1]) <= 100:
+            initial_energy += int(split[1])
+            print(f'You gained {split[1]} energy.')
+            print(f'Current energy: {initial_energy}.')
+        else:
+            needed_to_100 = 100 - initial_energy
+            initial_energy += needed_to_100
+            print(f'You gained {needed_to_100} energy.')
+            print(f'Current energy: {initial_energy}.')
+
+    elif split[0] == 'order':
+        initial_coins += int(split[1])
+        initial_energy -= 30
+        if initial_energy >= 0:
+            print(f'You earned {split[1]} coins.')
+        else:
+            initial_coins -= int(split[1])
+            initial_energy += 80
+            print('You had to rest!')
+    else:
+        if initial_coins >= int(split[1]):
+            initial_coins -= int(split[1])
+            print(f'You bought {split[0]}.')
+        else:
+            flag = False
+            print(f'Closed! Cannot afford {split[0]}.')
+            break
+if flag:
+    print(f'Day completed!')
+    print(f'Coins: {initial_coins}')
+    print(f'Energy: {initial_energy}')
