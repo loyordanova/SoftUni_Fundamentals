@@ -1,0 +1,9 @@
+factor = int(input())
+count = int(input())
+
+num_list = []
+
+for multiplier in range(1, count + 1):
+    num_list.append(factor * multiplier)
+
+print(num_list)
