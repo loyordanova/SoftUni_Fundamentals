@@ -1,0 +1,11 @@
+num = input().split(' ')
+
+new = []
+
+for i in num:
+    i = int(i)
+    opposite = i * - 1
+    new.append(opposite)
+
+print(new)
+
