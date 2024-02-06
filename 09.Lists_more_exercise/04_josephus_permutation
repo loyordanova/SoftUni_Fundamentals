@@ -1,0 +1,16 @@
+circle = input().split(' ')
+k = int(input()) - 1
+
+circle_len = len(circle)
+dead_list = []
+man_to_kill = 0
+
+while circle_len > 0:
+    man_to_kill = (man_to_kill + k) % circle_len
+    removed = circle.pop(man_to_kill)
+    dead_list.append(removed)
+    circle_len -= 1
+
+dead_as_int = [int(i) for i in dead_list]
+print(str(dead_as_int).replace(' ', ''))
+
