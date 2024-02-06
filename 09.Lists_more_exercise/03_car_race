@@ -1,0 +1,34 @@
+numbers = input().split(" ")
+
+first_car = []
+second_car = []
+
+flag = False
+
+count_list = len(numbers)
+half_list = count_list // 2
+
+for car1 in range(0, half_list):
+    first_car.append(int(numbers[car1]))
+
+for car2 in range(half_list + 1, count_list):
+    second_car.append(int(numbers[car2]))
+
+first_car_total_time = 0
+second_car_total_time = 0
+
+for car1_time in first_car:
+    first_car_total_time += car1_time
+    if car1_time == 0:
+        first_car_total_time -= first_car_total_time * 0.20
+
+second_car.reverse()
+for car2_time in second_car:
+    second_car_total_time += car2_time
+    if car2_time == 0:
+        second_car_total_time -= second_car_total_time * 0.20
+
+if first_car_total_time < second_car_total_time:
+    print(f'The winner is left with total time: {first_car_total_time:.1f}')
+else:
+    print(f'The winner is right with total time: {second_car_total_time:.1f}')
