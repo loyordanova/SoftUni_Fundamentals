@@ -1,0 +1,50 @@
+one = input().split(' ')
+two = input().split(' ')
+three = input().split(' ')
+
+matrix = [one,
+          two,
+          three]
+
+flag = True
+
+for row in matrix:
+    if row[0] == row[1] == row[2] == '1':
+        flag = False
+        print(f'First player won')
+        exit()
+    elif row[0] == row[1] == row[2] == '2':
+        flag = False
+        print(f'Second player won')
+        exit()
+
+for column in matrix:
+    if matrix[0][0] == matrix[1][0] == matrix[2][0] == '1':
+        flag = False
+        print(f'First player won')
+        exit()
+    elif matrix[0][0] == matrix[1][0] == matrix[2][0] == '2':
+        flag = False
+        print(f'Second player won')
+        exit()
+
+for diagonal in matrix:
+    if matrix[0][0] == matrix[1][1] == matrix[2][2] == '1':
+        flag = False
+        print(f'First player won')
+        exit()
+    elif matrix[0][2] == matrix[1][1] == matrix[2][0] == '1':
+        flag = False
+        print(f'First player won')
+        exit()
+    elif matrix[0][0] == matrix[1][1] == matrix[2][2] == '2':
+        flag = False
+        print(f'Second player won')
+        exit()
+    elif matrix[0][2] == matrix[1][1] == matrix[2][0] == '2':
+        flag = False
+        print(f'Second player won')
+        exit()
+
+if flag:
+    print(f'Draw!')
