@@ -1,0 +1,119 @@
+numbers = input().split(' ')
+
+num_as_int = []
+even_list = []
+odd_list = []
+even_list_min = []
+odd_list_min = []
+first_number_even = []
+first_number_odd = []
+even_list_list = []
+odd_list_last = []
+
+for num in numbers:
+    num_as_int.append(int(num))
+
+while True:
+    command = input()
+    list_command = list(command.split(' '))
+
+    if list_command[0] == 'end':
+        print(num_as_int)
+        break
+
+    elif list_command[0] == 'exchange':
+        index = int(list_command[1])
+        if index >= len(num_as_int) or index < 0:
+            print(f'Invalid index')
+
+        else:
+            first_half = num_as_int[0:index + 1]
+            second_half = num_as_int[index + 1:]
+            num_as_int = second_half + first_half
+
+    elif list_command[0] == 'max':
+        if list_command[1] == 'even':
+            for i in num_as_int:
+                if i % 2 == 0:
+                    even_list.append(i)
+            if len(even_list) == 0:
+                print(f'No matches')
+            else:
+                print(len(num_as_int) - num_as_int[::-1].index(max(even_list)) - 1)
+            even_list = []
+
+        elif list_command[1] == 'odd':
+            for max_odd_el in num_as_int:
+                if max_odd_el % 2 != 0:
+                    odd_list.append(max_odd_el)
+            if len(odd_list) == 0:
+                print(f'No matches')
+            else:
+                print(len(num_as_int) - num_as_int[::-1].index((max(odd_list)))- 1)
+            odd_list = []
+
+    elif list_command[0] == 'min':
+        if list_command[1] == 'even':
+            for min_even_el in num_as_int:
+                if min_even_el % 2 == 0:
+                    even_list_min.append(min_even_el)
+            if len(even_list_min) == 0:
+                print(f'No matches')
+            else:
+                print(len(num_as_int) - num_as_int[::-1].index(min(even_list_min)) - 1)
+
+        if list_command[1] == 'odd':
+            for min_odd in num_as_int:
+                if min_odd % 2 != 0:
+                    odd_list_min.append(min_odd)
+            if len(odd_list_min) == 0:
+                print(f'No matches')
+            else:
+                print(len(num_as_int) - num_as_int[::-1].index(min(odd_list_min)) - 1)
+
+    elif list_command[0] == 'first':
+        first_range_number = int(list_command[1])
+        if first_range_number > len(num_as_int):
+            print(f'Invalid count')
+
+        elif list_command[2] == 'even':
+            for first_even_el in num_as_int:
+                if first_even_el % 2 == 0:
+                    first_number_even.append(first_even_el)
+                    if len(first_number_even) == first_range_number:
+                        break
+            print(first_number_even)
+            first_number_even = []
+
+        elif list_command[2] == 'odd':
+            for first_odd_el in num_as_int:
+                if first_odd_el % 2 != 0:
+                    first_number_odd.append(first_odd_el)
+                    if len(first_number_odd) == first_range_number:
+                        break
+            print(first_number_odd)
+            first_number_odd = []
+
+    elif list_command[0] == 'last':
+        last_range_number = int(list_command[1])
+
+        if last_range_number > len(num_as_int):
+            print(f'Invalid count')
+
+        elif list_command[2] == 'even':
+            for element in reversed(num_as_int):
+                if element % 2 == 0:
+                    even_list_list.append(element)
+                    if len(even_list_list) == last_range_number:
+                        break
+            print(list(reversed(even_list_list)))
+            even_list_list = []
+
+        elif list_command[2] == 'odd':
+            for element2 in reversed(num_as_int):
+                if element2 % 2 != 0:
+                    odd_list_last.append(element2)
+                    if len(odd_list_last) == last_range_number:
+                        break
+            print(list(reversed(odd_list_last)))
+            odd_list_last = []
