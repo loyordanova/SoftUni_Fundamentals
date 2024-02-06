@@ -1,0 +1,26 @@
+numbers = input().split(' ')
+text = input()
+
+final_word = []
+
+for num in numbers:
+    sum_num = 0
+    for i in num:
+        number = i
+        sum_num += int(i)
+
+    if sum_num >= len(text):
+        remove = 0
+        remove += sum_num - len(text)
+        letter_to_add = text[remove]
+        final_word.append(letter_to_add)
+        text = text.replace(letter_to_add, '', 1)
+
+    else:
+        letter_to_add = text[sum_num]
+        final_word.append(letter_to_add)
+        text = text.replace(letter_to_add, '', 1)
+
+final_word = ''.join(final_word)
+
+print(final_word)
