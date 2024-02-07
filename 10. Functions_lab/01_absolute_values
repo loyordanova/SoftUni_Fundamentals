@@ -1,0 +1,9 @@
+number = input().split(' ')
+
+result = []
+
+for num in number:
+    num_as_int = float(num)
+    result.append(abs(num_as_int))
+
+print(result)
