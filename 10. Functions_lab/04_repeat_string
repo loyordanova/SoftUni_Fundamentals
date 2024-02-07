@@ -1,0 +1,7 @@
+text = input()
+number = int(input())
+
+repeated = lambda a, b: a * b
+result = repeated(text, number)
+
+print(result)
