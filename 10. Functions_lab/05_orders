@@ -1,0 +1,17 @@
+product = input()
+qty = int(input())
+
+
+def final_price(product_type, total_qty):
+
+    if product_type == 'coffee':
+        return 1.50 * total_qty
+    elif product_type == 'water':
+        return 1 * total_qty
+    elif product_type == 'coke':
+        return 1.40 * total_qty
+    elif product_type == 'snacks':
+        return 2 * total_qty
+
+
+print(f'{final_price(product, qty):.2f}')
