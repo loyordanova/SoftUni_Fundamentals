@@ -1,0 +1,10 @@
+import math
+num1 = int(input())
+num2 = int(input())
+
+fact_num1 = math.factorial(num1)
+fact_num2 = math.factorial(num2)
+
+result = fact_num1 / fact_num2
+
+print(f'{result:.2f}')
