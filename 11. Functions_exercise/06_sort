@@ -1,0 +1,9 @@
+sequence = input().split(' ')
+
+int_sequence = []
+for char in sequence:
+    int_sequence.append(int(char))
+
+sorted_list = sorted(int_sequence)
+
+print(sorted_list)
