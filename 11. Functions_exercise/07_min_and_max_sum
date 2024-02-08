@@ -1,0 +1,13 @@
+numbers = input().split(' ')
+
+int_sequence = []
+for char in numbers:
+    int_sequence.append(int(char))
+
+min = min(int_sequence)
+max = max(int_sequence)
+sum = sum(int_sequence)
+
+print(f'The minimum number is {min}')
+print(f'The maximum number is {max}')
+print(f'The sum number is: {sum}')
