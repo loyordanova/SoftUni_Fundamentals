@@ -1,0 +1,13 @@
+letter1 = input()
+letter2 = input()
+
+
+def characters(a, b):
+    a = ord(a)
+    b = ord(b)
+
+    for char in range(a + 1, b):
+        print(chr(char), end=' ')
+
+
+characters(letter1, letter2)
