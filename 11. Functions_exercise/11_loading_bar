@@ -1,0 +1,16 @@
+number = int(input())
+
+
+def loading_bar(num):
+
+    if num == 100:
+        print(f'100% Complete!')
+        print(f'[%%%%%%%%%%]')
+    else:
+        percentage = '%' * (num // 10)
+        dots = '.' * ((100 - num) // 10)
+        print(f'{num}% [{percentage}{dots}]')
+        print(f'Still loading...')
+
+
+loading_bar(number)
