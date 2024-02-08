@@ -1,0 +1,12 @@
+numbers = input().split(', ')
+
+
+def func(l):
+    for element in l:
+        if element == ''.join(reversed(element)):
+            print(f'True')
+        else:
+            print(f'False')
+
+
+func(numbers)
