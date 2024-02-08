@@ -1,0 +1,17 @@
+sequence = input().split(' ')
+
+int_sequence = []
+
+for char in sequence:
+    int_sequence.append(int(char))
+
+
+def func(a):
+    if a % 2 == 0:
+        return True
+    else:
+        return False
+
+
+even_numbers = filter(func, int_sequence)
+print(list(even_numbers))
