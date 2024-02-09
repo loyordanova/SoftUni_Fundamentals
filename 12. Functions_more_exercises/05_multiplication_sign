@@ -1,0 +1,18 @@
+num1 = int(input())
+num2 = int(input())
+num3 = int(input())
+
+
+def func(a, b, c):
+    
+    abc_list = [a, b, c]
+    negative_count = len(list(filter(lambda x: (x < 0), abc_list)))
+    if 0 in abc_list:
+        print(f'zero')
+    elif negative_count % 2 != 0:
+        print(f'negative')
+    else:
+        print(f'positive')
+
+
+func(num1, num2, num3)
