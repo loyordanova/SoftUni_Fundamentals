@@ -1,0 +1,22 @@
+import math
+from math import sqrt
+x1 = float(input())
+y1 = float(input())
+x2 = float(input())
+y2 = float(input())
+
+
+def func(a, b, c, d):
+    hipo1 = (a ** 2) + (b ** 2)
+    hipo1 = sqrt(hipo1)
+
+    hipo2 = (c ** 2) + (d ** 2)
+    hipo2 = sqrt(hipo2)
+
+    if hipo1 < hipo2:
+        print(f'({math.floor(a)}, {math.floor(b)})')
+    else:
+        print(f'({math.floor(c)}, {math.floor(d)})')
+
+
+func(x1, y1, x2, y2)
