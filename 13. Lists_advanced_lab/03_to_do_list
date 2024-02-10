@@ -1,0 +1,16 @@
+notes = [0] * 10
+
+while True:
+    tokens = input().split('-')
+
+    if tokens[0] == 'End':
+        break
+
+    priority = int(tokens[0]) - 1
+    note = tokens[1]
+    notes.pop(priority)
+    notes.insert(priority, note)
+
+result = [el for el in notes if el != 0]
+
+print(result)
