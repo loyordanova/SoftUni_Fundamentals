@@ -1,0 +1,12 @@
+words = input().split(' ')
+palindrome = input()
+palindrome_list = []
+
+for word in words:
+    reversed_word = word[::-1]
+
+    if word == reversed_word:
+        palindrome_list.append(word)
+
+print(palindrome_list)
+print(f'Found palindrome {palindrome_list.count(palindrome)} times')
