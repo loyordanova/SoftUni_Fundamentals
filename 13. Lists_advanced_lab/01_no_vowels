@@ -1,0 +1,8 @@
+text = input()
+
+replace_words = ['a', 'o', 'u', 'e', 'i', 'A', 'O', 'U', 'E', 'I']
+result = ''
+
+result = list(char for char in text if char not in replace_words)
+
+print(*result, sep='')
