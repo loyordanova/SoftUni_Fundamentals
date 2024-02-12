@@ -1,0 +1,49 @@
+lessons = input().split(', ')
+
+exercise_list = []
+
+while True:
+    command = input()
+
+    if command == 'course start':
+        break
+
+    command = command.split(':')
+
+    for lesson in lessons:
+        if 'Exercise' in lesson:
+            exercise_list.append(lesson)
+
+    if command[0] == 'Add' and command[1] not in lessons:
+        lessons.append(command[1])
+
+    elif command[0] == 'Insert' and command[1] not in lessons:
+        lessons.insert(int(command[2]), command[1])
+
+    elif command[0] == 'Remove' and command[1] in lessons:
+        lessons.remove(command[1])
+
+    elif command[0] == 'Swap':
+        if command[1] and command[2] in lessons:
+            index_first_el = lessons.index(command[1])
+            index_second_el = lessons.index(command[2])
+            lessons[index_first_el], lessons[index_second_el] = lessons[index_second_el], lessons[index_first_el]
+        if f'{command[2]}-Exercise' in lessons:
+            lessons.remove(f'{command[2]}-Exercise')
+            lessons.insert(lessons.index(command[2]) + 1, f'{command[2]}-Exercise')
+
+    elif command[0] == 'Exercise':
+        if command[1] in lessons and f'{command[1]}-Exercise' in lessons:
+            continue
+        elif command[1] in lessons and f'{command[1]}-Exercise' not in lessons:
+            lesson_index = lessons.index(command[1])
+            lessons.insert(lesson_index + 1, f'{command[1]}-Exercise')
+        else:
+            lessons.append(command[1])
+            lessons.append(f'{command[1]}-Exercise')
+
+counter = 1
+for i in lessons:
+    print(f'{counter}.{i}')
+    counter += 1
+
