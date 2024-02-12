@@ -1,0 +1,27 @@
+message = input().split(' ')
+
+message_list = []
+
+for element in message:
+    num_code = ''
+    rest_of_the_word = ''
+    for letter in element:
+        if letter.isdigit():
+            num_code += letter
+        else:
+            rest_of_the_word += letter
+    word = chr(int(num_code)) + rest_of_the_word
+    message_list.append(word)
+
+final_message = ''
+
+for x in message_list:
+    first = x[-1]
+    last = x[1]
+    if len(x) == 2:
+        final = x
+    else:
+        final = x[0] + first + x[2:-1] + last
+    final_message += final + ' '
+
+print(final_message)
