@@ -1,0 +1,5 @@
+text = input().split(' ')
+
+even_length = [i for i in text if len(i) % 2 == 0]
+
+print(*even_length, sep='\n')
