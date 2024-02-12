@@ -1,0 +1,35 @@
+pokemon_distance = [int(i) for i in input().split()]
+
+removed_value = 0
+
+while pokemon_distance:
+    index = int(input())
+
+    if index >= len(pokemon_distance):
+
+        removed_index = pokemon_distance[-1]
+        removed_value += pokemon_distance[-1]
+        pokemon_distance[-1] = pokemon_distance[0]
+
+    elif index < 0:
+
+        removed_index = pokemon_distance[0]
+        removed_value += pokemon_distance[0]
+        pokemon_distance[0] = pokemon_distance[-1]
+
+    else:
+
+        removed_index = pokemon_distance[index]
+        pokemon_distance.pop(index)
+        removed_value += removed_index
+
+    for index, string in enumerate(pokemon_distance):
+        if string <= removed_index:
+            string += removed_index
+            pokemon_distance[index] = string
+
+        elif string > removed_index:
+            string -= removed_index
+            pokemon_distance[index] = string
+
+print(removed_value)
