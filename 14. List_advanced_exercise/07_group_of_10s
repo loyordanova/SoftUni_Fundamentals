@@ -1,0 +1,9 @@
+numbers = list(map(int, (input()).split(', ')))
+
+max_value = 10
+
+while len(numbers) != 0:
+    removed_list = list((filter(lambda x: x <= max_value, numbers)))
+    print(f"Group of {max_value}'s: {removed_list}")
+    numbers = [n for n in numbers if n not in removed_list]
+    max_value += 10
