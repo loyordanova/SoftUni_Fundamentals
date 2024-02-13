@@ -1,0 +1,15 @@
+population = [int(x) for x in input().split(", ")]
+minimum_wealth = int(input())
+
+if minimum_wealth > sum(population) / len(population):
+    print("No equal distribution possible")
+    exit()
+
+while any(person_money < minimum_wealth for person_money in population):
+    max_number, number_to_change = max(population), min(population)
+    index_max, index_min = population.index(max_number), population.index(number_to_change)
+    added_value = minimum_wealth - number_to_change
+    population[index_max] -= added_value
+    population[index_min] += added_value
+
+print(population)
