@@ -1,0 +1,26 @@
+rows = int(input())
+
+lab = []
+max_count = [0]
+for i in range(rows):
+    lab.append(list(input().split()))
+
+
+def correct_lab_bounds(row, col):
+    if row < 0 or col < 0 or row >= len(lab) or col >= len(lab[0]):
+        return True
+
+
+def check_wall(row, col):
+    if lab[row][col] in "-–":
+        return True
+
+
+def check_already_visit(row, col):
+    if lab[row][col] == "v":
+        return True
+
+
+def find_exit(row, col):
+    if lab[row][col] == ".":
+        return True
