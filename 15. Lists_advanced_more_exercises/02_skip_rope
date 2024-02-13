@@ -1,0 +1,26 @@
+text = input()
+result = ''
+
+numbers_list = [int(num) for num in text if num.isdigit()]
+take_list = numbers_list[::2]
+skip_list = numbers_list[1::2]
+non_numbers_list = [symbol for symbol in text if not symbol.isdigit()]
+
+while len(skip_list) > 0 or len(take_list) > 0:
+    take_list_num = take_list[0]
+    skip_list_num = skip_list[0]
+
+    if len(take_list) == 0:
+        continue
+
+    else:
+        for i in range(take_list_num):
+            result += non_numbers_list[0]
+            non_numbers_list.pop(0)
+        take_list.remove(take_list_num)
+
+    for x in range(skip_list_num):
+        non_numbers_list.pop(0)
+    skip_list.remove(skip_list_num)
+
+print(result)
