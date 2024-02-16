@@ -1,0 +1,14 @@
+number = int(input())
+
+dictionary = {}
+
+for i in range(number):
+    word = input()
+    synonym = input()
+
+    if word not in dictionary:
+        dictionary[word] = [synonym]
+    else:
+        dictionary[word].append(synonym)
+for key, value in dictionary.items():
+    print(f'{key} - {", ".join(value)}')
