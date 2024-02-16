@@ -1,0 +1,16 @@
+students = []
+course_to_search = ''
+while True:
+    command = input()
+
+    if command.islower():
+        course_to_search = command
+        break
+
+    student, id, course = command.split(":")
+    students.append({'name': student, 'id': id, 'course': course})
+
+for student in students:
+    if course_to_search.startswith(student['course'][0:3]):
+        print(f"{student['name']} - {student['id']}")
+
