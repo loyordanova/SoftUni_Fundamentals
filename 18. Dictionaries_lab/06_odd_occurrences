@@ -1,0 +1,12 @@
+elements = input().split()
+
+dictionary = {}
+
+for el in elements:
+    el_lower = el.lower()
+    if el_lower not in dictionary:
+        dictionary[el_lower] = 0
+    dictionary[el_lower] += 1
+for key, value in dictionary.items():
+    if value % 2 != 0:
+        print(key, end=" ")
