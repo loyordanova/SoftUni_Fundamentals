@@ -1,0 +1,15 @@
+dictionary = {}
+while True:
+    sequence = input()
+
+    if sequence == 'stop':
+        break
+
+    qty = int(input())
+    if sequence not in dictionary:
+        dictionary[sequence] = qty
+    else:
+        dictionary[sequence] += qty
+
+for key, value in dictionary.items():
+    print(f'{key} -> {value}')
