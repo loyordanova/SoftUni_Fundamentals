@@ -1,0 +1,21 @@
+# word = input()
+# dictionary = {}
+#
+# for letter in word:
+#     if letter != ' ':
+#         if letter not in dictionary:
+#             dictionary[letter] = 1
+#         else:
+#             dictionary[letter] += 1
+# for key, value in dictionary.items():
+#     print(f'{key} -> {value}')
+
+symbols = [char for char in input() if char != ' ']
+letters = {}
+
+for symbol in symbols:
+    if symbol not in letters.keys():
+        letters[symbol] = 0
+    letters[symbol] += 1
+for character, occurrences in letters.items():
+    print(f'{character} -> {occurrences}')
