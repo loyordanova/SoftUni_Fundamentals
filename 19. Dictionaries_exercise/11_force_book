@@ -1,0 +1,46 @@
+force_dictionary = {}
+
+while True:
+
+    c = input()
+
+    if c == 'Lumpawaroo':
+        break
+
+    if '|' in c:
+        command = c.split(' | ')
+        force_side, force_user = command
+
+        present_in_list = False
+        for value in force_dictionary.values():
+            if force_user in value:
+                present_in_list = True
+                break
+
+        if not present_in_list:
+            if force_side not in force_dictionary.keys():
+                force_dictionary[force_side] = [force_user]
+            else:
+                force_dictionary[force_side].append(force_user)
+
+    elif '->' in c:
+        command = c.split(' -> ')
+        force_user, force_side = command
+
+        for key, value in force_dictionary.items():
+            if force_user in value:
+                force_dictionary[key].remove(force_user)
+
+        if force_side not in force_dictionary.keys():
+            force_dictionary[force_side] = [force_user]
+            print(f"{force_user} joins the {force_side} side!")
+        else:
+            force_dictionary[force_side].append(force_user)
+            print(f"{force_user} joins the {force_side} side!")
+
+for k, v in force_dictionary.items():
+    if len(v):
+        count = len(v)
+        print(f'Side: {k}, Members: {count}')
+        for value in v:
+            print(f'! {value}')
