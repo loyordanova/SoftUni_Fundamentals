@@ -1,0 +1,22 @@
+rows = int(input())
+students = {}
+
+for row in range(rows):
+    student = input()
+    grade = float(input())
+
+    if student not in students.keys():
+        students[student] = [grade]
+    else:
+        students[student].append(grade)
+
+for key, value in students.items():
+    students[key] = sum(value) / len(value)
+
+for k, v in students.items():
+    if students[k] >= 4.50:
+        print(f'{k} -> {v:.2f}')
+
+
+
+
