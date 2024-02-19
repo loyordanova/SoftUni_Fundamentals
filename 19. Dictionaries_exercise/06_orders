@@ -1,0 +1,17 @@
+current_qty = {}
+result = {}
+while True:
+    command = input()
+    if command == 'buy':
+        break
+    product, price, qty = command.split()
+
+    if product not in result.keys():
+        result[product] = [float(price), int(qty)]
+    else:
+        result[product][0] = float(price)
+        result[product][1] += int(qty)
+
+for key, value in result.items():
+    total_price = value[0] * value[1]
+    print(f'{key} -> {total_price:.2f}')
