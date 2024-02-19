@@ -1,0 +1,20 @@
+courses = {}
+
+while True:
+    command = input()
+
+    if command == 'end':
+        break
+
+    course, name = command.split(" : ")
+
+    if course not in courses.keys():
+        courses[course] = [name]
+    else:
+        courses[course].append(name)
+
+for key, value in courses.items():
+    value_length = len(value)
+    print(f"{key}: {value_length}")
+    for v in value:
+        print(f'-- {"".join(v)}')
