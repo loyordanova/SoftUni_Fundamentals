@@ -1,0 +1,47 @@
+results = {}
+submissions = {}
+
+while True:
+    command_line = input()
+
+    if command_line == 'exam finished':
+        break
+
+    elif 'banned' in command_line:
+        participant = command_line.split('-')
+        name = participant[0]
+        del results[name]
+
+        for key, value in submissions.items():
+            for v in value:
+                if v == name:
+                    submissions[key].remove(v)
+                    submissions[key].append('banned')
+
+    else:
+        participant = command_line.split('-')
+        name = participant[0]
+        lang = participant[1]
+        point = int(participant[2])
+
+        if lang not in submissions and name not in results:
+            results[name] = point
+            submissions[lang] = [name]
+        elif lang in submissions and name not in results:
+            results[name] = point
+            submissions[lang].append(name)
+        elif lang in submissions and name in results:
+            for username in submissions.values():
+                if name in username:
+                    if point > results[name]:
+                        results[name] = point
+                    submissions[lang].append(name)
+                    break
+
+print(f'Results:')
+for key, value in results.items():
+    print(f'{key} | {value}')
+print(f'Submissions:')
+for key, value in submissions.items():
+    length_lang = len(value)
+    print(f'{key} - {length_lang}')
