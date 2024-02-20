@@ -1,0 +1,49 @@
+command = input()
+
+player_statistic = {}
+best_players = []
+
+
+def duel_players(player_one, player_two):
+    if (player_one and player_two) in player_statistic:
+        for pl_one in player_statistic[player_one]:
+            if pl_one in player_statistic[player_two]:
+                total_pl_one = sum(player_statistic[player_one].values())
+                total_pl_two = sum(player_statistic[player_two].values())
+                if total_pl_one > total_pl_two:
+                    del player_statistic[player_two]
+                elif total_pl_one < total_pl_two:
+                    del player_statistic[player_one]
+                break
+
+
+def adding_roles(player, position, skill):
+    if player not in player_statistic:
+        player_statistic[player] = {}
+    if position not in player_statistic[player]:
+        player_statistic[player][position] = 0
+    if player_statistic[player][position] < skill:
+        player_statistic[player][position] = skill
+
+
+while command != 'Season end':
+    if ' vs ' in command:
+        command = command.split(' vs ')
+        duel_players(command[0], command[-1])
+    else:
+        command = command.split(' -> ')
+        adding_roles(command[0], command[1], int(command[-1]))
+    command = input()
+
+
+def show_result():
+    for p_name in player_statistic:
+        best_players.append({"name": p_name, "total_score": sum(player_statistic[p_name].values())})
+    print(best_players)
+    for show in sorted(best_players, key=lambda item: (-item["total_score"], item["name"])):
+        print(f"{show['name']}: {show['total_score']} skill")
+        for pos, skill in sorted(player_statistic[show['name']].items(), key=lambda item: (-item[1], item[0])):
+            print(f"- {pos} <::> {skill}")
+
+
+show_result()
