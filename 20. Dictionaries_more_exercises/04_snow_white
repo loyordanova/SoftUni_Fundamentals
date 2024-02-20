@@ -1,0 +1,30 @@
+command = input()
+dwarfs_data = {}
+dwarfs_results = []
+
+
+def input_dwarf(dwarf_name, dwarf_hat_color, dwarf_physics):
+    if dwarf_hat_color not in dwarfs_data:
+        dwarfs_data[dwarf_hat_color] = {}
+    if dwarf_name not in dwarfs_data[dwarf_hat_color]:
+        dwarfs_data[dwarf_hat_color][dwarf_name] = 0
+    if dwarfs_data[dwarf_hat_color][dwarf_name] < dwarf_physics:
+        dwarfs_data[dwarf_hat_color][dwarf_name] = dwarf_physics
+
+
+while command != 'Once upon a time':
+    command = command.split(' <:> ')
+    input_dwarf(command[0], command[1], int(command[-1]))
+    command = input()
+
+
+def result():
+    for hat in dwarfs_data.keys():
+        for name, physics in dwarfs_data[hat].items():
+            dwarfs_results.append({'hat_len': len(dwarfs_data[hat]), 'dwarf_name': name, 'physics': physics, 'hat': hat})
+
+    for show in sorted(dwarfs_results, key=lambda item: (-item['physics'], -item['hat_len'])):
+        print(f"({show['hat']}) {show['dwarf_name']} <-> {show['physics']}")
+
+
+result()
