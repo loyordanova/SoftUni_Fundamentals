@@ -1,0 +1,48 @@
+dragons_input = int(input())
+dragons_info = {}
+average_stats_per_type = {}
+
+for dragon in range(dragons_input):
+    dragon_data = input().split()
+    color, dragon_name, damage, health, armor = dragon_data
+
+    if damage == 'null':
+        damage = 45
+    if health == 'null':
+        health = 250
+    if armor == 'null':
+        armor = 10
+
+    if color not in dragons_info:
+        dragons_info[color] = {}
+    if dragon_name not in dragons_info[color]:
+        dragons_info[color][dragon_name] = {}
+    dragons_info[color][dragon_name]['damage'] = int(damage)
+    dragons_info[color][dragon_name]['health'] = int(health)
+    dragons_info[color][dragon_name]['armor'] = int(armor)
+
+
+def result():
+    for dragon_color in dragons_info:
+        dragon_damage, dragon_health, dragon_armor = 0, 0, 0
+        for name in dragons_info[dragon_color]:
+            dragon_damage += dragons_info[dragon_color][name]['damage']
+            dragon_health += dragons_info[dragon_color][name]['health']
+            dragon_armor += dragons_info[dragon_color][name]['armor']
+        total_dragons = len(dragons_info[dragon_color])
+        print(
+            f"{dragon_color}::"
+            f"({(dragon_damage / total_dragons):.2f}/"
+            f"{(dragon_health / total_dragons):.2f}/"
+            f"{(dragon_armor / total_dragons):.2f})"
+        )
+        for name in sorted(dragons_info[dragon_color].keys()):
+            print(
+                f"-{name} -> "
+                f"damage: {dragons_info[dragon_color][name]['damage']}, "
+                f"health: {dragons_info[dragon_color][name]['health']}, "
+                f"armor: {dragons_info[dragon_color][name]['armor']}"
+            )
+
+
+result()
