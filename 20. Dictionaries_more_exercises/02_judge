@@ -1,0 +1,42 @@
+statistic = {}
+individual_standings = {}
+while True:
+
+    command = input()
+
+    if command == 'no more time':
+        break
+
+    username, contest, points = command.split(' -> ')
+
+    if contest not in statistic:
+        statistic[contest] = {username: int(points)}
+    elif username not in statistic[contest]:
+        statistic[contest][username] = int(points)
+    elif statistic[contest][username] < int(points):
+        statistic[contest][username] = int(points)
+
+sorted_points = {}
+for key, value in statistic.items():
+    print(f'{key}: {len(value)} participants')
+
+    for v in value:
+        sorted_points = {val[0]: val[1] for val in sorted(value.items(), key=lambda x: (-x[1], x[0]))}
+    count = 1
+    for key, value in sorted_points.items():
+        print(f'{count}. {key} <::> {value}')
+        count += 1
+
+individual_standings = {}
+for value in statistic.values():
+    for k, v in value.items():
+        if k not in individual_standings:
+            individual_standings[k] = v
+        else:
+            individual_standings[k] += v
+sorted_standings = {val[0]: val[1] for val in sorted(individual_standings.items(), key=lambda x: (-x[1], x[0]))}
+print(f'Individual standings:')
+counter = 1
+for key, value in sorted_standings.items():
+    print(f'{counter}. {key} -> {value}')
+    counter += 1
