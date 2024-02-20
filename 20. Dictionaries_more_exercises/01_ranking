@@ -1,0 +1,51 @@
+contest_dict = {}
+submissions_dict = {}
+
+while True:
+
+    command = input()
+
+    if command == 'end of submissions':
+        break
+
+    elif ":" in command:
+        contest, password = command.split(":")
+        contest_dict[contest] = password
+
+    elif '=>' in command:
+        contest, password, username, points = command.split("=>")
+        for key, value in contest_dict.items():
+            if key == contest and value == password:
+                if username in submissions_dict.keys():
+                    if contest in submissions_dict[username][0]:
+                        index_to_check = submissions_dict[username][0].index(contest)
+                        if int(points) > submissions_dict[username][1][index_to_check]:
+                            submissions_dict[username][1][index_to_check] = int(points)
+                    else:
+                        submissions_dict[username][0].append(contest)
+                        submissions_dict[username][1].append(int(points))
+                else:
+                    submissions_dict[username] = [[contest], [int(points)]]
+
+total_points = {}
+best_candidate = ''
+max_points = 0
+for key, value in submissions_dict.items():
+    total_points[key] = (sum(value[1]))
+
+for key, value in total_points.items():
+    if value > max_points:
+        max_points = value
+        best_candidate = key
+
+print(f'Best candidate is {best_candidate} with total {max_points} points.')
+print('Ranking:')
+for key, value in sorted(submissions_dict.items()):
+    print(f'{key}')
+
+    for v in range(len(value[0])):
+        current_max = max(value[1])
+        index_current_max = value[1].index(current_max)
+        print(f'#  {value[0][index_current_max]} -> {current_max}')
+        value[1][index_current_max] = -1
+
