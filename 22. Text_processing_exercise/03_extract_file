@@ -1,0 +1,6 @@
+path = input().split('\\')
+
+last_word = path[-1]
+last_word = last_word.split('.')
+print(f'File name: {last_word[0]}')
+print(f'File extension: {last_word[1]}')
