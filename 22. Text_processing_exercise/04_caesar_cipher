@@ -1,0 +1,12 @@
+text = input()
+encrypted_version = ''
+
+for char in text:
+    if char == ' ':
+        new_char_char = '#'
+    else:
+        new_char_num = ord(char) + 3
+        new_char_char = chr(new_char_num)
+    encrypted_version += new_char_char
+
+print(encrypted_version)
