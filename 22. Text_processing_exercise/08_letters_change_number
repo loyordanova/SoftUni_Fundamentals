@@ -1,0 +1,24 @@
+text = input().split()
+results = 0
+
+for word in text:
+    word = word.strip()
+    res = 0
+
+    if word[0].isupper():
+        first_letter = ord(word[0]) - 64
+        res += int(word[1:-1]) / first_letter
+    else:
+        first_letter = ord(word[0]) - 96
+        res += int(word[1:-1]) * first_letter
+
+    if word[-1].isupper():
+        second_letter = ord(word[-1]) - 64
+        res -= second_letter
+    else:
+        second_letter = (ord(word[-1])) - 96
+        res += second_letter
+
+    results += res
+
+print(f'{results:.2f}')
