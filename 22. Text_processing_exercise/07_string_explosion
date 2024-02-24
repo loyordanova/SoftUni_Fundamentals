@@ -1,0 +1,14 @@
+string = input()
+final_string = ''
+power = 0
+
+for index in range(len(string)):
+    if power > 0 and string[index] != '>':
+        power -= 1
+    elif string[index] == '>':
+        final_string += '>'
+        power += int(string[index + 1])
+    else:
+        final_string += string[index]
+
+print(final_string)
