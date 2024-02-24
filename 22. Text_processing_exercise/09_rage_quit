@@ -1,0 +1,25 @@
+text = input()
+final_text = ''
+unique_symbols = []
+
+letters = ''
+numbers = ''
+for index, char in enumerate(text):
+    if not char.isdigit():
+        char = char.upper()
+        if char not in unique_symbols:
+            unique_symbols.append(char)
+        letters += char
+    else:
+        numbers += char
+        if index == len(text) - 1:
+            final_text += letters * int(numbers)
+
+        elif index < len(text) - 1:
+            if not text[index + 1].isdigit():
+                final_text += letters * int(numbers)
+                letters = ''
+                numbers = ''
+
+print(f'Unique symbols used: {len(unique_symbols)}')
+print(final_text)
