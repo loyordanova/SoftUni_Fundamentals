@@ -1,0 +1,15 @@
+first_char = ord(input())
+last_char = ord(input())
+txt = input()
+
+symbols = []
+
+for char in txt:
+    if ord(char) in range(first_char + 1, last_char):
+        symbols.append(char)
+
+result = 0
+for symbol in symbols:
+    result += ord(symbol)
+
+print(result)
