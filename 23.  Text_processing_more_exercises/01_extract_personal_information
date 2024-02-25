@@ -1,0 +1,19 @@
+lines = int(input())
+
+for line in range(lines):
+    text = input()
+    name = ''
+    age = ''
+
+    name_string = text.split('@')
+    age_string = text.split('#')
+
+    for char in name_string[1]:
+        if char == '|':
+            break
+        name += char
+    for num in age_string[1]:
+        if num == '*':
+            break
+        age += num
+    print(f'{name} is {age} years old.')
