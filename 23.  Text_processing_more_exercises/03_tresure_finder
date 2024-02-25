@@ -1,0 +1,32 @@
+import re
+
+keys = input().split()
+
+txt = input()
+
+while txt != 'find':
+    key = 0
+    message = ''
+    type = ''
+    coordinates = ''
+    for char in txt:
+        if key == len(keys):
+            key = 0
+        char_ord = ord(char) - int(keys[key])
+        message += chr(char_ord)
+        key += 1
+
+    type_pattern = "&.+&"
+    type_match = re.findall(type_pattern, message)
+    for symbol in type_match:
+        clear_type = re.findall("\w", symbol)
+        type = "".join(clear_type)
+
+    coordinates_pattern = "<.+>"
+    coordinates_match = re.findall(coordinates_pattern, message)
+    for symbol in coordinates_match:
+        clear_coordinates = re.findall('\w', symbol)
+        coordinates = "".join(clear_coordinates)
+
+    print(f'Found {type} at {coordinates}')
+    txt = input()
