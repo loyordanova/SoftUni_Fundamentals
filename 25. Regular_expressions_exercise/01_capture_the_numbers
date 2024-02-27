@@ -1,0 +1,25 @@
+import re
+pattern = r"\d+"
+lines = input()
+while True:
+    if lines:
+        matches = re.findall(pattern, lines)
+        if matches:
+            print(" ".join(matches), end=" ")
+        lines = input()
+    else:
+        break
+
+# import re
+#
+# lines = []
+# while True:
+#     line = input()
+#     if line:
+#         lines.append(line)
+#     else:
+#         break
+# text = '\n'.join(lines)
+# pattern = r"\d+"
+# matches = re.findall(pattern, text)
+# print(" ".join(matches))
