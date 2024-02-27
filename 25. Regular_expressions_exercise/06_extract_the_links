@@ -1,0 +1,12 @@
+import re
+
+pattern = r'(www\.[A-Za-z0-9\-*]+(\.[a-z]+)+)'
+valid_urls = []
+txt = input()
+while txt:
+    matches = re.search(pattern, txt)
+    if matches:
+        valid_urls.append(matches.group(0))
+    txt = input()
+for valid_url in valid_urls:
+    print(valid_url)
