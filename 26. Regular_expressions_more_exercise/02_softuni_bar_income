@@ -1,0 +1,19 @@
+import re
+
+command = input()
+
+total_income = 0
+while command != 'end of shift':
+    pattern = r'%([A-Z][a-z]+)%([^\.\|\$\%]*)<(\w+)>([^\.\|\%\$]*)\|(\d+)\|([^\.\|\%\$]*)([1-9][.0-9]*)\$'
+    match = re.search(pattern, command)
+    if match:
+        customer = match.group(1)
+        product = match.group(3)
+        count = match.group(5)
+        price = match.group(7)
+        total_qty = int(count) * float(price)
+        total_income += total_qty
+        print(f'{customer}: {product} - {total_qty:.2f}')
+
+    command = input()
+print(f'Total income: {total_income:.2f}')
