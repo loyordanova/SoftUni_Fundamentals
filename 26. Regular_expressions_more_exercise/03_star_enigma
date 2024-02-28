@@ -1,0 +1,33 @@
+import re
+lines = int(input())
+
+attacked_planets = []
+destroyed_planets = []
+for i in range(lines):
+    message = input()
+    pattern = r'[s,t,a,r]'
+    new_message = ''
+    match_count = len(re.findall(pattern, message, re.I))
+    for letter in message:
+        ord_letter = ord(letter) - match_count
+        new_message += chr(ord_letter)
+
+    message_pattern = r'@(?P<name>[A-z]+)([^\@\-\!\:])*:([^\@\-\!\:])*(?P<population>' \
+                      r'[1-9][0-9]*)([^\@\-\!\:])*\!(?P<attack_type>A|D)!([^\@\-\!\:])*->' \
+                      r'([^\@\-\!\:])*(?P<soldier_count>[1-9][0-9]*)'
+    matches = re.search(message_pattern, new_message)
+    if matches:
+        name = matches.group('name')
+        attack_type = matches.group('attack_type')
+        if attack_type == 'D':
+            destroyed_planets.append(name)
+        else:
+            attacked_planets.append(name)
+print(f'Attacked planets: {len(attacked_planets)}')
+if attacked_planets:
+    for attacked_planet in sorted(attacked_planets):
+        print(f'-> {attacked_planet}')
+print(f'Destroyed planets: {len(destroyed_planets)}')
+if destroyed_planets:
+    for destroyed_planet in sorted(destroyed_planets):
+        print(f'-> {destroyed_planet}')
