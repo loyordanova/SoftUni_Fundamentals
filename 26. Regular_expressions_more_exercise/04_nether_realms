@@ -1,0 +1,29 @@
+import re
+demons = re.split(", *", input())
+demons = [demon.strip() for demon in demons]
+demons_data = {}
+
+for demon in demons:
+    demons_data[demon] = {}
+    health_pattern = r'[^0-9\+\-\*/\.]'
+    health_match = re.findall(health_pattern, demon)
+    for match in health_match:
+        demons_data[demon]['health'] = sum(ord(match) for match in health_match)
+
+    damage = 0
+    damage_pattern = r'((\+|-)?(\d+)(\.\d+)?)'
+    damage_match = re.finditer(damage_pattern, demon)
+    for match in damage_match:
+        damage += float(match.group())
+
+    damage_pattern_v2 = r'[\*\/]'
+    damage_match_v2 = re.findall(damage_pattern_v2, demon)
+    for match_v2 in damage_match_v2:
+        if match_v2 == '*':
+            damage = damage * 2
+        elif match_v2 == '/':
+            damage /= 2
+    demons_data[demon]['damage'] = damage
+
+for demon in sorted(demons_data):
+    print(f'{demon} - {demons_data[demon]["health"]} health, {demons_data[demon]["damage"]:.2f} damage')
