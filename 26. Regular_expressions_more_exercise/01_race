@@ -1,0 +1,27 @@
+import operator
+import re
+
+list_of_participants = input().split(', ')
+
+info = input()
+players = {}
+while info != 'end of race':
+    pattern_name = r'[A-Za-z]+'
+    pattern_score = r'\d'
+    name = "".join(re.findall(pattern_name, info))
+    score = re.findall(pattern_score, info)
+    total_player_score = 0
+    for single_score in score:
+        total_player_score += int(single_score)
+    if name in list_of_participants:
+        if name in players.keys():
+            players[name] += int(total_player_score)
+        else:
+            players[name] = int(total_player_score)
+    info = input()
+
+first_place = sorted(players.items(), key=operator.itemgetter(1), reverse=True)
+print(f'1st place: {first_place[0][0]}')
+print(f'2nd place: {first_place[1][0]}')
+print(f'3rd place: {first_place[2][0]}')
+
