@@ -1,0 +1,33 @@
+import re
+encrypted_message = input()
+command = input()
+
+while command != 'Decode':
+    instructions = command.split("|")
+
+    if instructions[0] == 'ChangeAll':
+        new_message = ''
+        for letter in encrypted_message:
+            if letter == instructions[1]:
+                new_message += instructions[2]
+            else:
+                new_message += letter
+        encrypted_message = new_message
+
+    elif instructions[0] == 'Insert':
+        index = int(instructions[1])
+        inserter_letter = instructions[2]
+        first_half = encrypted_message[:index]
+        second_half = encrypted_message[index:]
+        added_letter = inserter_letter + second_half
+        encrypted_message = first_half + added_letter
+
+    elif instructions[0] == 'Move':
+        moved_letters = int(instructions[1])
+        first_half = encrypted_message[:moved_letters]
+        second_half = encrypted_message[moved_letters:]
+        encrypted_message = second_half + first_half
+
+    command = input()
+
+print(f'The decrypted message is: {encrypted_message}')
