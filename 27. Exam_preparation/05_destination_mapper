@@ -1,0 +1,14 @@
+import re
+txt = input()
+
+destinations = []
+pattern = r'(=|\/)(?P<location>[A-Z][a-zA-Z]{2,})\1'
+matches = re.finditer(pattern, txt)
+
+travel_points = 0
+for match in matches:
+    travel_points += len(match['location'])
+    destinations.append(match['location'])
+
+print(f'Destinations: {", ".join(destinations)}\n'
+      f'Travel Points: {travel_points}')
