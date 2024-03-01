@@ -1,0 +1,51 @@
+def rate(info):
+    plant, rating = info.split(' - ')
+    if plant not in plants_dict:
+        print('error')
+    else:
+        plants_dict[plant][1].append(int(rating))
+
+
+def update(info):
+    plant, rarity = info.split(' - ')
+    if plant not in plants_dict:
+        print('error')
+    else:
+        plants_dict[plant][0] = rarity
+
+
+def reset(info):
+    plant = info
+    if plant not in plants_dict:
+        print('error')
+    else:
+        plants_dict[plant][1] = []
+
+
+number_of_lines = int(input())
+plants_dict = {}
+
+for line in range(number_of_lines):
+    plant, rarity = input().split('<->')
+    if plant in plants_dict:
+        plants_dict[plant][0] = rarity
+    else:
+        plants_dict[plant] = [rarity, []]
+
+command = input()
+while command != 'Exhibition':
+    command_type, info = command.split(': ')
+    if command_type == 'Rate':
+        rate(info)
+    elif command_type == 'Update':
+        update(info)
+    elif command_type == 'Reset':
+        reset(info)
+    command = input()
+
+print(f'Plants for the exhibition:')
+for plant in plants_dict:
+    average_rating = 0
+    if plants_dict[plant][1]:
+        average_rating = sum(plants_dict[plant][1]) / len(plants_dict[plant][1])
+    print(f'- {plant}; Rarity: {plants_dict[plant][0]}; Rating: {average_rating:.2f}')
