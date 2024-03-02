@@ -1,0 +1,64 @@
+number_of_cars = int(input())
+cars = {}
+
+
+def drive(c, d, f):
+    car = c
+    distance_to_move = int(d)
+    fuel_needed = int(f)
+    if fuel_needed > cars[car]['fuel']:
+        print(f'Not enough fuel to make that ride')
+    else:
+        cars[car]['mileage'] += distance_to_move
+        cars[car]['fuel'] -= fuel_needed
+        print(f"{car} driven for {distance_to_move} kilometers. {fuel_needed} liters of fuel consumed.")
+        if cars[car]['mileage'] >= 100000:
+            cars.pop(car)
+            print(f'Time to sell the {car}!')
+
+
+def refuel(c,f):
+    car = c
+    refuel = int(f)
+    refueled_litters = 0
+    if cars[car]['fuel'] + refuel > 75:
+        difference = 75 - cars[car]['fuel']
+        cars[car]['fuel'] += difference
+        refueled_litters = difference
+    else:
+        cars[car]['fuel'] += refuel
+        refueled_litters = refuel
+    print(f'{car} refueled with {refueled_litters} liters')
+
+
+def revert(c, k):
+    car = c
+    kilometers = int(k)
+    cars[car]['mileage'] -= kilometers
+    if cars[car]['mileage'] < 10000:
+        cars[car]['mileage'] = 10000
+    else:
+        print(f'{car} mileage decreased by {kilometers} kilometers')
+
+
+for car in range(number_of_cars):
+    car_model, mileage, fuel = input().split('|')
+    cars[car_model] = {'mileage': int(mileage), 'fuel': int(fuel)}
+
+
+command = input()
+while command != 'Stop':
+    command_type, *info = command.split(" : ")
+    if command_type == 'Drive':
+        car, distance, fuel = info
+        drive(car, distance, fuel)
+    elif command_type == 'Refuel':
+        car, fuel = info
+        refuel(car, fuel)
+    elif command_type == 'Revert':
+        car, kilometers = info
+        revert(car, kilometers)
+    command = input()
+
+for car in cars:
+    print(f"{car} -> Mileage: {cars[car]['mileage']} kms, Fuel in the tank: {cars[car]['fuel']} lt.")
