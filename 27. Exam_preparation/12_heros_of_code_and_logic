@@ -1,0 +1,70 @@
+number_of_heros = int(input())
+
+heroes = {}
+for _ in range(number_of_heros):
+    hero_name, hit_points, mana_points = input().split()
+    heroes[hero_name] = {'hit points': int(hit_points), 'mana points': int(mana_points)}
+
+
+def cast_spell(name, mana, spell):
+    mana = int(mana)
+    if heroes[name]['mana points'] >= mana:
+        heroes[name]['mana points'] -= mana
+        print(f"{name} has successfully cast {spell}"
+              f" and now has {heroes[name]['mana points']} MP!")
+    else:
+        print(f"{name} does not have enough MP to cast {spell}!")
+
+
+def take_damage(name, dmg, att):
+    dmg = int(dmg)
+    heroes[name]['hit points'] -= dmg
+    if heroes[name]['hit points'] > 0:
+        print(f"{name} was hit for {dmg} HP by {att} and now "
+              f"has {heroes[name]['hit points']} HP left!")
+    else:
+        heroes.pop(name)
+        print(f"{name} has been killed by {att}!")
+
+
+def recharge(name, amount):
+    amount = int(amount)
+    amount_recovered = amount
+    if heroes[name]['mana points'] + amount > 200:
+        amount_recovered = 200 - heroes[name]['mana points']
+        heroes[name]['mana points'] += amount_recovered
+    else:
+        heroes[name]['mana points'] += amount_recovered
+    print(f"{name} recharged for {amount_recovered} MP!")
+
+
+def heal(name, amount):
+    amount = int(amount)
+    amount_recovered = amount
+    if heroes[name]['hit points'] + amount > 100:
+        amount_recovered = 100 - heroes[name]['hit points']
+        heroes[name]['hit points'] += amount_recovered
+    else:
+        heroes[name]['hit points'] += amount_recovered
+    print(f"{name} healed for {amount_recovered} HP!")
+
+
+command = input()
+while command != 'End':
+    command_type, *info = command.split(' - ')
+    if command_type == 'CastSpell':
+        hero_name, mp_needed, spell_name = info
+        cast_spell(hero_name, mp_needed, spell_name)
+    elif command_type == 'TakeDamage':
+        hero_name, damage, attacker = info
+        take_damage(hero_name, damage, attacker)
+    elif command_type == 'Recharge':
+        hero_name, amount = info
+        recharge(hero_name, amount)
+    elif command_type == 'Heal':
+        hero_name, amount = info
+        heal(hero_name, amount)
+    command = input()
+
+for hero in heroes:
+    print(f"{hero}\n  HP: {heroes[hero]['hit points']}\n  MP: {heroes[hero]['mana points']}")
