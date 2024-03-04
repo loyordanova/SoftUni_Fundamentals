@@ -1,0 +1,51 @@
+city_info = input()
+
+city_dict = {}
+while city_info != 'Sail':
+    city, population, gold = city_info.split('||')
+    if city in city_dict:
+        city_dict[city]['population'] += int(population)
+        city_dict[city]['gold'] += int(gold)
+    else:
+        city_dict[city] = {'population': int(population), 'gold': int(gold)}
+    city_info = input()
+
+
+def plunder(city, people, gold):
+    people = int(people)
+    gold = int(gold)
+    city_dict[city]['population'] -= people
+    city_dict[city]['gold'] -= gold
+    print(f"{city} plundered! {gold} gold stolen, {people} citizens killed.")
+    if city_dict[city]['population'] <= 0 or city_dict[city]['gold'] <= 0:
+        del city_dict[city]
+        print(f"{city} has been wiped off the map!")
+
+
+def prosper(city, gold):
+    gold = int(gold)
+    if gold < 0:
+        print(f"Gold added cannot be a negative number!")
+    else:
+        city_dict[city]['gold'] += gold
+        print(f"{gold} gold added to the city treasury. {city} now has {city_dict[city]['gold']} gold.")
+
+
+event = input()
+while event != 'End':
+    event_type, *info = event.split('=>')
+    if event_type == 'Plunder':
+        city, people, gold = info
+        plunder(city, people, gold)
+    elif event_type == 'Prosper':
+        city, gold = info
+        prosper(city, gold)
+    event = input()
+
+if city_dict:
+    print(f"Ahoy, Captain! There are {len(city_dict.keys())} wealthy settlements to go to:")
+    for city in city_dict:
+        print(f"{city} -> Population: {city_dict[city]['population']} citizens, Gold: {city_dict[city]['gold']} kg")
+else:
+    print(f"Ahoy, Captain! All targets have been plundered and destroyed!")
+    
