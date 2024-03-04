@@ -1,0 +1,39 @@
+raw_key = input()
+
+command = input()
+while command != 'Generate':
+    command_type, *info = command.split('>>>')
+
+    if command_type == 'Contains':
+        substring = info[0]
+        if substring in raw_key:
+            print(f"{raw_key} contains {substring}")
+        else:
+            print(f'Substring not found!')
+
+    elif command_type == 'Flip':
+        letter_type, start_index, end_index = info
+        start_idx = int(start_index)
+        end_idx = int(end_index)
+
+        if letter_type == 'Lower':
+            start = raw_key[:start_idx]
+            end = raw_key[end_idx:]
+            middle = raw_key[start_idx:end_idx].lower()
+            raw_key = start + middle + end
+
+        elif letter_type == 'Upper':
+            start = raw_key[:start_idx]
+            end = raw_key[end_idx:]
+            middle = raw_key[start_idx:end_idx].upper()
+            raw_key = start + middle + end
+        print(raw_key)
+    elif command_type == 'Slice':
+        start_index, end_index = info
+        start_idx = int(start_index)
+        end_idx = int(end_index)
+        raw_key = raw_key[:start_idx] + raw_key[end_idx:]
+        print(raw_key)
+    command = input()
+
+print(f"Your activation key is: {raw_key}")
