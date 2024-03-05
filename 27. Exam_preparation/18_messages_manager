@@ -1,0 +1,42 @@
+message_capacity = int(input())
+message_dict = {}
+
+while True:
+    command = input().split("=")
+
+    if command[0] == "Statistics":
+        print(f"Users count: {len(message_dict)}")
+        for user in message_dict:
+            total_messages = message_dict[user]["sent"] + message_dict[user]["received"]
+            print(f"{user} - {total_messages}")
+        break
+
+    elif command[0] == "Add":
+        username = command[1]
+        sent = int(command[2])
+        received = int(command[3])
+        if username not in message_dict:
+            message_dict[username] = {"sent": sent, "received": received}
+
+    elif command[0] == "Message":
+        sender = command[1]
+        receiver = command[2]
+        if sender in message_dict and receiver in message_dict:
+            message_dict[sender]["sent"] += 1
+            message_dict[receiver]["received"] += 1
+            total_sender = message_dict[sender]["sent"] + message_dict[sender]["received"]
+            total_receiver = message_dict[receiver]["sent"] + message_dict[receiver]["received"]
+            if total_sender >= message_capacity:
+                del message_dict[sender]
+                print(f"{sender} reached the capacity!")
+            if total_receiver >= message_capacity:
+                del message_dict[receiver]
+                print(f"{receiver} reached the capacity!")
+
+    elif command[0] == "Empty":
+        username = command[1]
+        if username == "All":
+            message_dict = {}
+        elif username in message_dict:
+            del message_dict[username]
+            
