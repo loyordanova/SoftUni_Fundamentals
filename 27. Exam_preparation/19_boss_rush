@@ -1,0 +1,15 @@
+import re
+
+inputs = int(input())
+
+for i in range(inputs):
+    text = input()
+    pattern = r'\|([A-Z]{4,})\|:{1}#([A-z]+\s{1}[A-z]+)#'
+    matches = re.findall(pattern, text)
+    if matches:
+        for match in matches:
+            print(f'{match[0]}, The {match[1]}')
+            print(f'>> Strength: {len(match[0])}')
+            print(f'>> Armor: {len(match[1])}')
+    else:
+        print(f'Access denied!')
